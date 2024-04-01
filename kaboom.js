@@ -1,7 +1,7 @@
 export const k = kaboom({
-    width: 320,
-    height: 240,
-    scale: 2,
+    width: 500,
+    height: 600,
+    scale: 4,
     background: [ 0, 0, 0, ],
 })
 

@@ -6,7 +6,7 @@ import Game from "./scenes/knightflight.js";
 k.scene('hello_world',HelloWorld)
 k.scene('game', Game)
 
-
+k.loadSprite('platforms',"assets/Starter Tiles Platformer/BasicGreenTiles/Dirt_1_16x16.png")
 k.loadSprite('background',"../assets/oak_woods_v1.0/oak_woods_v1.0/background/background_layer_1.png")
 k.loadSprite("knight","../assets/knightspritesheet.png", { 
         sliceX: 11,

@@ -8,23 +8,42 @@ import k from '../kaboom.js'
 export default function Game () {{
     
     setGravity(2400)
+    const FALL_DEATH = 1000
+    
 k.add([
     k.sprite('background'),
     k.scale(k.width() / 320, k.height()/240),
 
 ])
+addLevel([
+        "  =  ",
+        "=====",
+    ], {
+        tileWidth:16,
+        tileHeight:16,
+        pos: vec2(100,200),
+        tiles: {
+            "=" : () => [
+                sprite('platforms'),
+                scale(vec2(1,1)),
+                area(),
+                body({isStatic: true}),
+                
+            ],
+
+        },
+    })
 k.add([
     k.rect(k.width(), 50),
     outline(10),
     k.area(),
-    k.color(1,1,1),
     pos(0, k.height() - 50),
     body({isStatic: true}),
 ])
 const player = k.add([
     k.sprite("knight", { anim: "idle" }),
     k.pos(80, 80),
-    k.area(),
+    k.area(), //need to resize knight hitbox to be smaller
     k.body(),
 ])
 k.onKeyDown("right",()=>{
@@ -64,6 +83,14 @@ k.onKeyPress('space', () => {
     if(player.isGrounded()){
     player.jump()
     player.play("jump")
+    }
+})
+
+player.onUpdate(()=>{
+    camPos(player.pos)
+
+    if(player.pos.y >= FALL_DEATH){
+        player.pos = vec2(80,80)
     }
 })
 console.log(player)
