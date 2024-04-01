@@ -1,10 +1,5 @@
 import k from '../kaboom.js'
 
-
-// k.loadSprite('platforms',"../assets/Starter Tiles Platformer/BasicGreenGrid.png")
-// k.loadTiledMap('ground',"../assets/Starter Tiles Platformer/Ground.json")
-
-
 export default function Game () {{
     
     setGravity(2400)
@@ -16,28 +11,29 @@ k.add([
 
 ])
 addLevel([
+    "             $$                ",
+    "             ==                ",
     "                               ",
-    "                               ",
-    "                               ",
-    "                               ",
+    "        $                      ",
+    "       ==                      ",
     "                          $    ",
     "                          $    ",
     "           $$             $    ",
     "         ====             $    ",
     "                               ",
-    "               =               ",
-    "     ==============   =========",
+    "                             $ ",
+    "     ==============     =======",
     "                               ",
     "                               ",
-    "                          $    ",
     "                          $    ",
     "                      =   $    ",
-    "                      =  =$    ",
+    "                          $    ",
+    "                       =  $    ",
     "                               ",
     "                               ",
     "                               ",
     "           $       $       $ $",
-    "====   =   =   =   =  ==== == =",
+    "====   =   =   =   =   ========",
     ], {
         tileWidth:16,
         tileHeight:16,
@@ -124,7 +120,10 @@ player.onUpdate(()=>{
     if(player.pos.y >= FALL_DEATH){
         player.pos = vec2(80,80)
     }
+    if(score==18){
+        k.go('main')
+    }
 })
-console.log(player)
+
 }
 }
