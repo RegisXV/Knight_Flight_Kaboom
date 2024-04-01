@@ -5,7 +5,7 @@ import Game from "./scenes/knightflight.js";
 
 k.scene('hello_world',HelloWorld)
 k.scene('game', Game)
-
+k.loadSprite('coin',"../assets/Starter Tiles Platformer/tile001.png")
 k.loadSprite('platforms',"assets/Starter Tiles Platformer/BasicGreenTiles/Dirt_1_16x16.png")
 k.loadSprite('background',"../assets/oak_woods_v1.0/oak_woods_v1.0/background/background_layer_1.png")
 k.loadSprite("knight","../assets/knightspritesheet.png", { 
@@ -23,14 +23,14 @@ k.loadSprite("knight","../assets/knightspritesheet.png", {
             },    
                 "idle": {
                 from: 10,
-                to: 19,
-                speed: 5,
+                to: 12,
+                speed: 3,
                 loop: true,
             },
             
             "jump": {
                 from: 20,
-                to: 22,
+                to: 20,
             },
             "rrun": {
                 from: 32,

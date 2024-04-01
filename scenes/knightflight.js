@@ -8,42 +8,63 @@ import k from '../kaboom.js'
 export default function Game () {{
     
     setGravity(2400)
+    let score = 0
     const FALL_DEATH = 1000
-    
 k.add([
     k.sprite('background'),
     k.scale(k.width() / 320, k.height()/240),
 
 ])
 addLevel([
-        "  =  ",
-        "=====",
+    "                               ",
+    "                               ",
+    "                               ",
+    "                               ",
+    "                          $    ",
+    "                          $    ",
+    "           $$             $    ",
+    "         ====             $    ",
+    "                               ",
+    "               =               ",
+    "     ==============   =========",
+    "                               ",
+    "                               ",
+    "                          $    ",
+    "                          $    ",
+    "                      =   $    ",
+    "                      =  =$    ",
+    "                               ",
+    "                               ",
+    "                               ",
+    "           $       $       $ $",
+    "====   =   =   =   =  ==== == =",
     ], {
         tileWidth:16,
         tileHeight:16,
-        pos: vec2(100,200),
+        pos: vec2(0,50),
         tiles: {
             "=" : () => [
                 sprite('platforms'),
                 scale(vec2(1,1)),
                 area(),
                 body({isStatic: true}),
+                'platforms',
                 
+            ],
+            "$": () => [
+                sprite('coin'),
+                scale(vec2(1,1)),
+                area(),
+                'coin',
             ],
 
         },
     })
-k.add([
-    k.rect(k.width(), 50),
-    outline(10),
-    k.area(),
-    pos(0, k.height() - 50),
-    body({isStatic: true}),
-])
 const player = k.add([
     k.sprite("knight", { anim: "idle" }),
-    k.pos(80, 80),
-    k.area(), //need to resize knight hitbox to be smaller
+    k.pos(10, 80),
+    k.area({ scale: 0.3 }),  // Define a square hitbox //need to resize knight hitbox to be smaller
+    k.anchor("bot"),
     k.body(),
 ])
 k.onKeyDown("right",()=>{
@@ -85,6 +106,17 @@ k.onKeyPress('space', () => {
     player.play("jump")
     }
 })
+player.onCollide('coin', (coin) => {
+	destroy(coin),
+    score += 1,
+    coinsLabel.text = score
+    
+})
+const coinsLabel = add([
+    text(score),
+    pos(24, 24),
+    fixed(),
+])
 
 player.onUpdate(()=>{
     camPos(player.pos)
